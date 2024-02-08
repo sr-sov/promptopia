@@ -27,8 +27,15 @@ const CreatePrompt = () => {
                     tag: post.tag
                 })
             })
-        } catch (error) {
 
+            if(response.ok) {
+                Router.push('/');
+            }
+
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setSubmitting(false);
         }
     }
 
