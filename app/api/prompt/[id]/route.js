@@ -45,16 +45,16 @@ export const PATCH = async (req, { params }) => {
 }
 
 export const DELETE = async (req, { params }) => { 
-    const { prompt, tag } = await req.json();
 
     try {
         await connectToDB();
-        
-        const existingPrompt = await Prompt.findByIdAndRemove(params.id);
+
+        const result = await Prompt.findByIdAndDelete(params.id);
 
         return new Response("Prompt deleted successfully", {status: 200});
 
     } catch (error) {
+        console.log("Failed deletion"+params.id.toString());
         return new Response("Failed to delete prompt", {status: 500})
     }
 }
